@@ -1,19 +1,19 @@
 import express from "express";
-import axios from "axios";
 import dotenv from "dotenv";
+import { getTopHeadlines, searchEverything } from "./services/news.service.js";
+import newsRouter from "./routes/news.route.js";
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
+app.use(express.static("public"));
 
 dotenv.config();
 
-app.get("/news", async (req, res) => {
-    try {
-        const apiKey = process.env.NEWS_API_KEY;
-        const response = await axios.get(`https://newsapi.org/v2/top-headlines?country=us&apiKey=${apiKey}`);
-        res.json(response.data);
-    } catch (error) {
-        console.error("Error fetching news:", error);
-        res.status(500).json({ error: "Failed to fetch news" });
-    }
+app.set('view engine', 'ejs');
+app.set('views', 'views');
+
+app.use('/', newsRouter);
+
+app.listen(port, () => {
+    console.log(`Server running on port ${port}`);
 });
