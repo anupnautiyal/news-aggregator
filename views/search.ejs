@@ -3,24 +3,40 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Search results for <%= query %></title>
+  <title>Search results for "<%= query %>"</title>
+  <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
   <%- include('partials/header') %>
-  <h1>Search results for "<%= query %>"</h1>
 
-  <% if (news && news.length) { %>
-    <ul>
+  <section class="hero">
+    <div class="container">
+      <h1>Search results for "<%= query %>"</h1>
+      <p class="lead">Showing the most relevant news matching "<%= query %>"</p>
+    </div>
+  </section>
+
+  <main class="container grid">
+    <% if (news && news.length) { %>
       <% news.forEach(article => { %>
-        <li>
-          <a href="<%= article.url %>" target="_blank"><%= article.title %></a>
-          <p><%= article.description %></p>
-        </li>
+        <article class="card">
+          <% if (article.urlToImage) { %>
+            <a class="card-image" href="<%= article.url %>" target="_blank">
+              <img src="<%= article.urlToImage %>" alt="<%= article.title %>" />
+            </a>
+          <% } %>
+          <div class="card-body">
+            <span class="badge"><%= article.category || '' %></span>
+            <h3 class="card-title"><a href="<%= article.url %>" target="_blank"><%= article.title %></a></h3>
+            <p class="card-desc"><%= article.description || '' %></p>
+            <div class="card-meta"><small><%= article.source?.name %> • <%= new Date(article.publishedAt).toLocaleString() %></small></div>
+          </div>
+        </article>
       <% }) %>
-    </ul>
-  <% } else { %>
-    <p>No results found.</p>
-  <% } %>
+    <% } else { %>
+      <p class="muted">No results found for "<%= query %>".</p>
+    <% } %>
+  </main>
 
   <%- include('partials/footer') %>
 </body>

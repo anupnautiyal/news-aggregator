@@ -1,12 +1,16 @@
-<header>
-  <nav>
-    <a href="/">Home</a>
-    <a href="/category/business">Business</a>
-    <a href="/category/technology">Technology</a>
-    <form action="/search" method="get" style="display:inline">
-      <input type="text" name="q" placeholder="Search news" />
-      <button type="submit">Search</button>
+<header class="site-header">
+  <div class="container header-inner">
+    <div class="brand">
+      <a href="/" class="logo">NewsHub</a>
+    </div>
+    <nav class="main-nav">
+      <a href="/" class="nav-link">Home</a>
+      <a href="/category/technology" class="nav-link">Technology</a>
+      <a href="/category/business" class="nav-link">Business</a>
+      <a href="/category/sports" class="nav-link">Sports</a>
+    </nav>
+    <form class="search-form" action="/search" method="get">
+      <input type="text" name="q" placeholder="Search news articles..." />
     </form>
-  </nav>
+  </div>
 </header>
-<hr/>

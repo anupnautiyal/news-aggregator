@@ -2,3 +2,15 @@
 <footer>
   <p>&copy; News Aggregator</p>
 </footer>
+<script>
+  (function(){
+    const navs = document.querySelectorAll('.main-nav a');
+    const path = location.pathname;
+    navs.forEach(a => {
+      const href = a.getAttribute('href');
+      if (href === path || (href !== '/' && path.startsWith(href))) {
+        a.classList.add('active');
+      }
+    });
+  })();
+</script>
