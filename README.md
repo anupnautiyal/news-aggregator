@@ -99,8 +99,3 @@ No tests included yet. Recommended next steps:
 
 Contributions welcome—feel free to open issues or PRs.
 
----
-
-## License
-
-MIT
